@@ -90,12 +90,60 @@ public class UberShop {
         return result;
     }
 
+    public int[] leavePrice9(int[] prices) {
+        int validPriceCount = 0;
+        for(int price: prices) {
+            if (price%10 == 9) {
+                validPriceCount++;
+            }
+        }
+
+        int[] result = new int[validPriceCount];
+        int index = 0;
+        for(int price: prices) {
+            if (price%10 == 9) {
+                result[index] = price;
+                index++;
+            }
+        }
+
+        return result;
+    }
+
+    public String[] mergeStocks(String[] showcaseStocks, String[] warehouseStocks) {
+        String[] result = new String[showcaseStocks.length + warehouseStocks.length];
+
+        int index = 0;
+        for(String stock: showcaseStocks) {
+            result[index] = stock;
+            index++;
+        }
+
+        for(String stock: warehouseStocks) {
+            result[index] = stock;
+            index++;
+        }
+
+        return result;
+    }
+
+    public int getPricesSum(int[] prices, int minPrice, int maxPrice) {
+
+        int priceSum = 0;
+        for (int price : prices) {
+            if (price >= minPrice & price <= maxPrice) {
+                priceSum += price;
+            }
+        }
+        return priceSum;
+    }
+
     //Test output
     public static void main(String[] args) {
         UberShop shop = new UberShop();
 
-        //Should be [1599, 399]
-        int[] prices = new int[] {399, 1599, 399, 50, 10, 10, 70};
-        System.out.println(Arrays.toString(shop.leavePrice9(prices)));
+        //Should be 144 - 20 + 50 + 40 + 34
+        int[] prices = new int[] {10, 20, 50, 40, 34, 500};
+        System.out.println(shop.getPricesSum(prices, 20, 50));
     }
 }
